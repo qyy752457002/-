@@ -117,6 +117,7 @@ HTML 先布局再写内容
 }
 
 .nav-wrap{
+    position: relative;
     margin: 0 auto;
     width: 1180px;
     height: 70px; 
