@@ -1,0 +1,758 @@
+/*
+思路: 
+大局观 
+HTML 写结构, CSS样式
+HTML 先布局再写内容
+由外到内
+*/
+
+/*最外层容器开始*/
+.yys{
+    /*
+        width: 100%; 设置元素的宽度为其父容器的宽度的 100%。
+                    这将使元素水平充满其父容器的宽度。
+
+        max-width: 1920px; 设置元素的最大宽度为 1920 像素。
+                    这意味着即使父容器更宽，元素的宽度也不会超过 1920 像素。
+
+        min-width: 1280px; 设置元素的最小宽度为 1280 像素。
+                            这意味着即使父容器较窄，元素的宽度也不会小于 1280 像素。
+
+        overflow: hidden; 这个属性用于处理元素内容溢出的部分。
+                            如果元素的内容超出了其指定的宽度范围，overflow: hidden;
+                            将隐藏超出范围的部分，而不显示滚动条。
+    */
+    width: 100%;
+    max-width: 1920px;
+    min-width: 1280px; 
+    /* 隐藏溢出部分 */
+    /* overflow: hidden; */
+}
+
+/*头部开始*/
+
+.header{
+    position: relative;
+    width: 100%;
+    height: 55px;
+    /* 一行文字垂直居中 */
+
+    /* 这个属性设置行间距（行高）为55像素。行高是指一行文字的基线到下一行文字基线的距离。
+       在这个例子中，行高大于字体大小，这意味着文本行之间将有额外的空间，使得文本更易于阅读。*/
+    line-height: 55px; 
+}
+
+.menu {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 179px;
+    height: 54px; 
+    background-color: #cf1132;
+    font-size: 12px; 
+    color: #fff;
+}
+
+.sale {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 138px; 
+    border-left: 1px solid #dadada;
+    height: 54px;
+    color: #333;
+    font-size: 12px;
+    /* 修改光标为小手 */
+    cursor: pointer;
+}
+
+/* 鼠标悬停 sale class */
+.sale:hover {
+    color: #bc2e2e;
+    border-bottom: 1px solid #bc2e2e; 
+    background-color: #f3f3f3;
+}
+
+/*头部结束*/
+
+/*banner样式开始*/
+.banner{
+    width:100%;
+    height:884px;
+    background-color: red;
+}
+
+.nav{
+    /*
+        是一种 CSS 定位属性，用于创建具有粘性定位的元素。
+        这意味着元素在页面滚动时可以"粘"在指定位置，
+        直到达到某个触发条件，然后它会继续随滚动而移动，就像常规的滚动元素一样。
+
+        position: sticky; 是一个强大的 CSS 属性，常用于创建固定的导航栏、
+                          表头或其他需要在页面滚动时保持可见的元素。
+                          请注意，它的行为可能受到浏览器支持和具体用法的影响。
+    */
+
+    /*
+        有粘性定位的父元素不能设置overflow: hidden|auto|scroll;
+    */
+    position: sticky;
+    /*
+        这将元素的粘性定位触发条件设置为距离父容器顶部的距离为 0 像素。
+        换句话说，元素将在顶部粘在父容器中，直到滚动到顶部，然后它会继续随着滚动而移动。
+    */
+    top: 0;
+    /*
+        这将元素的粘性定位触发条件设置为距离父容器右侧的距离为 0 像素。
+        这意味着元素将粘在右侧，直到它到达容器的右侧边缘，然后它会继续随着滚动而移动。
+    */
+    right: 0;
+    width: 100%;
+    height: 60px; 
+    background-color: black;
+    z-index: 999;
+    /* 水平居中 */
+    /* 垂直居上 */
+    background-image: url("../images/nav_back_bg_fd2505e.jpg") no-repeat center top;
+}
+
+.nav-wrap{
+    margin: 0 auto;
+    width: 1180px;
+    height: 70px; 
+    /* 这个属性设置行间距（行高）为70像素。行高是指一行文字的基线到下一行文字基线的距离。
+       在这个例子中，行高大于字体大小，这意味着文本行之间将有额外的空间，使得文本更易于阅读。*/
+    line-height: 70px;
+}
+
+.nav-wrap li{
+    position: relative;
+    float: left;
+    width: 84.28px;
+    font-size: 14px;
+}
+
+/*
+    对一个导航条中的列表项（<li>标签）进行样式设置，但仅适用于那些不具有 .nav-active 类的列表项。
+    具体来说，它会在这些列表项中创建一个伪元素（::after），通常用于在元素内容的后面添加装饰性内容。
+    下面是代码的详细解释：
+
+    1. 被视为其父元素（例如 h1）的子元素。
+    2. 在渲染上，出现在父元素的内容结束处。
+    3. 虽然在视觉上作为子元素呈现，但在HTML文档或DOM树中并不存在。
+*/
+.nav-wrap li:not(.nav-active)::after {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    content: "";
+    width: 1px;
+    height: 10px;
+    background-color: #fff;
+}
+
+.nav-wrap li:hover::after {
+    content: "";
+    background-color: transparent;
+}
+
+.nav-wrap a {
+    color: #fff;
+}
+
+.nav-active {
+    background: url("../images/nav_bg1_d44f09d.jpg") no-repeat;
+}
+
+/*
+    .nav-active > a 选择所有直接作为 .nav-active 类元素的子代的 a 元素。
+*/
+.nav-active > a {
+    color: #000;
+}
+
+/* 鼠标悬停 */
+.nav-wrap li:hover {
+    background: url("../images/nav_bg1_d44f09d.jpg");
+    color: #000;
+}
+
+/* 鼠标悬停到li 的 Child a上， 字体颜色变为黑色 */
+.nav-wrap li:hover > a {
+    color: #000;
+}
+
+/* 放大镜 */
+.search {
+     /*
+        相对于nav-wrap定位
+    */
+    position: absolute;
+
+    /*
+        则元素上边缘（top edge）将相对于其父元素上边缘（top edge）垂直向下偏移 25px
+
+        CSS 中的垂直偏移默认是向下的，即正值表示向下移动元素，负值表示向上移动元素
+    */
+    top: 25px;
+    /*
+        则元素右边缘（right edge）将相对于其父元素右边缘（right edge）水平向左偏移 35px
+
+        CSS 中的水平偏移默认是向右的，即正值表示向右移动元素，负值表示向左移动元素
+    */
+    right: -35px;
+    width: 18px;
+    height: 19px;
+    background: url("../images/search_b180dd5.png") no-repeat;
+    /* 修改光标为小手 */
+    cursor: pointer;
+    /*  applies a transition effect to all CSS properties, 
+        making changes to the element's style gradually over a duration of 0.3 seconds. 
+        This is often used for smooth animations or transitions when the element's style changes.
+    */
+    transition: all .3s;
+}
+
+.search:hover {
+    /* 按 y-axis 旋转 180度 */
+    transform: rotateY(180deg);
+}
+
+/*下拉列表*/
+/*
+思路：
+    1. 下拉列表绝对定位到显示的位置
+    2. display:none; 隐藏
+    3. 鼠标悬停显示 display:block;
+*/
+
+.nav-list {
+    position: absolute;
+    /*
+        则元素上边缘（top edge）将相对于其父元素上边缘（top edge）垂直向下偏移 60px
+
+        CSS 中的垂直偏移默认是向下的，即正值表示向下移动元素，负值表示向上移动元素
+    */
+    top: 60px;
+    /*
+        则元素左边缘（left edge）将相对于其父元素左边缘（left edge）水平向右偏移 0px
+
+        CSS 中的水平偏移默认是向右的，即正值表示向右移动元素，负值表示向左移动元素
+    */
+    left: 0px;
+    display: none;
+    width: 100%;
+    height: 140px;
+    /*
+        This part specifies that the background image should not repeat. 
+        It will be displayed only once in its original size and position within the element.
+    */
+    background: url("../images/subnav_bg_5cc9309.jpg") center 0 no-repeat;
+}
+
+/*
+    .nav-active > .nav-list 选择所有直接作为 .nav-active 类元素的子代的 .nav-list 元素。
+*/
+.nav:hover > .nav-list{
+    display: block;
+}
+
+.nav-list img{
+    /*
+        24px: This sets a top margin of 24 pixels.
+        10px: This sets a right margin of 10 pixels.
+        0: This sets a bottom margin of 0 pixels, 
+            effectively removing any space at the bottom.
+    */
+    margin: 24px 10px 0;
+}
+
+.banner-box {
+    /* 图片太大 溢出不妨隐藏 */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 784px;
+}
+
+.banner-box > img {
+    /* margin取百分比相当于父元素的宽度 */
+    margin-left: 50%;
+    /* 水平方向往左走自己宽度的一半 */
+    transform: translateX(-960px);
+
+    /*响度于自己原位置*/
+    /*position: relative;*/
+    /*往左走自己宽度的一半*/
+    /*left: -960px;*/
+}
+
+.banner-bottom{
+    position: absolute;
+    /*
+        则元素左边缘（left edge）将相对于其父元素左边缘（left edge）水平向右偏移 0px
+
+        CSS 中的水平偏移默认是向右的，即正值表示向右移动元素，负值表示向左移动元素
+    */
+    left: 0;
+    /*
+        则元素下边缘（bottom edge）将相对于其父元素下边缘（bottom edge）垂直向下偏移 0px
+
+        CSS 中的垂直偏移默认是向下的，即正值表示向下移动元素，负值表示向上移动元素
+    */
+    bottom: 0;
+    width: 100%;
+    height: 287px;
+    /*
+        repeat-x：这表示要在水平方向上重复平铺背景图片。
+        也就是说，背景图片将在水平方向上不断重复，直到填满元素的宽度。
+
+        center：这指定了在水平方向上对齐背景图片。具体来说，它会使背景图片在元素的水平中心位置
+
+        bottom：这指定了在垂直方向上对齐背景图片。具体来说，它会使背景图片位于元素的底部位置
+    */
+    background: url("../images/bot_head_bg_450ba6b.png") repeat-x center bottom;
+}
+
+.banner-logo {
+    position: absolute;
+    left: 150px;
+    top: 143px;
+    width: 77px;
+    height: 228px;
+    background: url("../images/200.webp") no-repeat;
+    background-size: 100% ;
+}
+
+.download {
+    position: relative;
+    width: 145px;
+    height: 240px;
+    padding-top: 47px;
+    background: url("../images/index_z_8ea32f7.png");
+}
+
+/*
+    .download > img 选择所有直接作为 .download 类元素的子代的 img 元素。
+*/
+
+.download > img {
+    width: 107px;
+}
+
+/*
+    .download > .line 选择所有直接作为 .download 类元素的子代的 line 元素。
+*/
+
+.download > .line {
+    position: absolute;
+    top: 45px;
+    left: 12px;
+    width: 120px;
+    /*
+        应用了一个名为 move 的动画效果。
+        这个动画会在 4 秒内以线性（linear）的方式无限循环。
+    */
+    animation: move 4s linear infinite;
+}
+
+/*
+    - @keyframes move 定义了名为 move 的关键帧动画。
+
+    - 0%、50% 和 100% 表示关键帧的百分比位置，即动画在不同时间点的状态。
+
+    - transform: translateY(0); 在动画的起始位置（0%）将元素垂直方向上平移 0 像素，即元素原始位置。
+
+    - transform: translateY(100px); 在动画的中间位置（50%）将元素垂直方向上平移 100 像素，向下移动。
+
+    - transform: translateY(0); 在动画的结束位置（100%）将元素垂直方向上平移 0 像素，回到原始位置。
+
+    因此，这段 CSS 代码会产生一个具有往复移动效果的下载按钮线条。
+    在4秒内，按钮线条会以线性速度在垂直方向上移动，从原始位置向下移动100像素，
+    然后返回原始位置，然后不断重复这个过程。
+*/
+
+@keyframes move {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(100px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+/*banner样式结束*/
+
+/*主体开始*/
+.wrap {
+    width: 1180px;
+    margin: 0 auto;
+}
+
+/*主体结束*/
+
+/*平安世界样式开始*/
+.world {
+    position: relative;
+    width: 100%;
+    height: 495px;
+    margin-bottom: 70px;
+    /*清除margin-top的影响*/
+    overflow: hidden;
+    margin-top: 43px;
+}
+
+.world-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 54px;
+    height: 145px;
+    background: url("../images/index_z_8ea32f7.png");
+    background-position: -940px -532px;
+}
+
+.world-img {
+    width: 1180px;
+    height: 320px;
+    margin-top: 128px;
+    background: url("../images/shishen_bg_000bc91.jpg") no-repeat center top;
+}
+
+.big-img {
+    width: 940px;
+    height: 320px;
+    margin: 0 auto;
+}
+
+.big-img > a {
+    position: relative;
+    float: left;
+    width: 470px;
+    height: 320px;
+}
+
+.big-img img {
+    position: absolute;
+    top: -186px;
+    right: -140px;
+}
+
+.big-img .big-img-left {
+    position: relative;
+    left: -140px;
+}
+
+/*平安世界样式结束*/
+
+
+/*游戏攻略开始*/
+.game {
+    width: 100%;
+    height: 510px;
+    background: url("../images/stategy_bg_4def7a7.jpg") no-repeat;
+    background-position: 0 174px;
+}
+
+.game-tit {
+    float: left;
+    width: 55px;
+    height: 145px;
+    background: url("../images/index_z_8ea32f7.png");
+    /*
+        向左平移 867 px
+        向上平移 532 px
+    */
+    background-position: -876px -532px;
+}
+
+.game-box {
+    float: right;
+    width: 1080px;
+    height: 209px;
+}
+
+/*
+    .game-box > div 选择所有直接作为 .game-box 类元素的子代的 div 元素。
+*/
+.game-box > div {
+    position: relative;
+    float: left;
+    width: 340px;
+    height: 209px;
+    margin-left: 20px;
+}
+
+/*
+    当鼠标悬停在 .game-box 类的直接子 div 元素上时，应用样式于这些 div 元素内的所有 span 元素。
+
+    水平轴，向上移动 10 px
+*/
+.game-box > div:hover span {
+    transform: translateY(-10px);
+}
+
+.game-box span {
+    position: absolute;
+    width: 40px;
+    height: 90px;
+    /* top/bottom 0 px, left/right 10 px */
+    padding: 0 10px;
+    box-sizing: border-box;
+    background: url("../images/stategy_tit_bg_3dfaee2.png");
+    color: #000;
+    /* 这个属性设置文本的字体大小为14像素。字体大小是指字体的高度。*/
+    font-size: 14px;
+    /* 这个属性设置行间距（行高）为18像素。行高是指一行文字的基线到下一行文字基线的距离。
+       在这个例子中，行高大于字体大小，这意味着文本行之间将有额外的空间，使得文本更易于阅读。*/
+    line-height: 18px;
+    transition: all .4s;
+}
+
+/* 第一个 span */
+.game-box span:first-of-type {
+    top: 0px;
+    left: 18px;
+}
+
+/* 最后一个 span */
+.game-box span:last-of-type {
+    top: 22px;
+    left: 68px;
+}
+/*游戏攻略结束*/
+
+/*同人手账样式开始*/
+
+/*
+    background: url("../images/tongren_bg_4e00ea2.jpg") no-repeat 0 bottom; 
+                中的 0 bottom 是相对于应用了 .tongren 类的元素的。
+
+    这里的属性详细说明如下：
+
+    0 bottom 定位背景图像。0 表示背景图像在水平方向上的位置是从左边缘开始（0 等同于 left），
+    而 bottom 表示背景图像在垂直方向上紧贴元素的底部。
+*/
+.tongren {
+    width: 100%;
+    height: 487px;
+    margin-bottom: 70px;
+    background: url("../images/tongren_bg_4e00ea2.jpg") no-repeat 0 bottom;
+}
+
+.tongren-tit {
+    float: left;
+    width: 53px;
+    height: 144px;
+    background: url("../images/index_z_8ea32f7.png");
+    background-position: -1003px -532px;
+}
+.tongren-box{
+    float: right;
+    width: 1062px;
+    height: 456px;
+}
+.tongren-box-left{
+    float: left;
+    width: 300px;
+    height: 456px;
+}
+.tongren-box-right{
+    float: right;
+    width: 720px;
+    height: 447px;
+}
+
+/*
+    应用了一个名为 change 的动画效果。
+    这个动画会在 6 秒内以线性（linear）的方式无限循环。
+*/
+.tr-img{
+    width: 300px;
+    height: 415px;
+    margin-top: 41px;
+    background-image: url("../images/636343c1-1786-41f4-a666-bc70e648b7b3.png");
+    animation:change 6s linear infinite ;
+}
+
+@keyframes change {
+    0%{
+        background-image: url("../images/636343c1-1786-41f4-a666-bc70e648b7b3.png");
+    }
+    50%{
+        background-image: url("../images/1ecee501-bfd2-46b2-95fc-6cd88c63faa2.png");
+    }
+    100%{
+        background-image: url("../images/48a4f70a-058c-4cbf-84eb-27d09ed50f2a.jpg");
+    }
+
+}
+
+/*
+    应用了一个名为 change1 的动画效果。
+    这个动画会在 14 秒内以线性（linear）的方式无限循环。
+*/
+
+.tongren-box-right>div{
+    width: 220px;
+    height: 351px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 20px;
+    background-image: url("../images/cdd1bfc5-5e41-49d9-9b57-1b89016aae74.jpg");
+    animation: change1 14s linear infinite;
+}
+
+@keyframes change1 {
+    0%{
+        background-image: url("../images/cdd1bfc5-5e41-49d9-9b57-1b89016aae74.jpg");
+    }
+    16%{
+        background-image: url("../images/9a1e3659-9eca-4c88-aa77-b276372718b6.jpg");
+    }
+    32%{
+        background-image: url("../images/cdd1bfc5-5e41-49d9-9b57-1b89016aae74.jpg");
+    }
+    48%{
+        background-image: url("../images/9a1e3659-9eca-4c88-aa77-b276372718b6.jpg");
+    }
+    64%{
+        background-image: url("../images/cdd1bfc5-5e41-49d9-9b57-1b89016aae74.jpg");
+    }
+    80%{
+        background-image: url("../images/9a1e3659-9eca-4c88-aa77-b276372718b6.jpg");
+    }
+    100%{
+        background-image: url("../images/cdd1bfc5-5e41-49d9-9b57-1b89016aae74.jpg");
+    }
+
+}
+/*同人手账样式结束*/
+
+/* 视听盛宴开始 */
+.shiting {
+    width: 100%;
+    height: 262px;
+    padding-bottom: 47px;
+}
+
+/*
+    float: left;: 这个属性使得 .shiting-tit 类的元素向左浮动。
+                   这意味着元素会尽可能地移动到其 父容器 的左边缘，并且会影响周围元素的布局。
+
+    在这个上下文中，父元素是指包含该浮动元素的最近的块级元素或者是其他已定位的元素。
+*/
+
+.shiting-tit {
+    float: left;
+    width: 55px;
+    height: 146px;
+    background: url("../images/index_z_8ea32f7.png");
+    background-position: -812px -532px;
+}
+
+/*
+    float: right;: 这个属性使得 .st-box 类的元素向右浮动。
+                   这意味着元素会尽可能地移动到其 父容器 的右边缘，并且会影响周围元素的布局。
+
+    在这个上下文中，父元素是指包含该浮动元素的最近的块级元素或者是其他已定位的元素。
+*/
+
+.st-box {
+    float: right;
+    width: 1090px;
+    height: 215px;
+
+    /*
+        图片将从 .st-box类元素 的左边缘开始放置
+        垂直往下走70px
+    */
+    background: url("../images/shiting_bg_735f29c.jpg") no-repeat left 70;
+}
+
+.st-box > div {
+    position: relative;
+    float: left;
+    width: 250px;
+    height: 141px;
+    background-color: gold;
+    margin-left: 20px;
+}
+
+.st-box > div:first-child {
+    margin-left: 30px;
+}
+
+.st-name {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    background-color: #000;
+    padding: 5px 10px;
+    color: #fff;
+}
+
+/* 视听盛宴结束 */
+
+/* 泛娱乐开始 */
+.fun {
+    width: 100%;
+    height: 516px;
+    margin-bottom: 70px;
+    background: url("../images/fun_bg_99effa1.jpg") no-repeat left 175px;
+}
+
+.fun-tit {
+    float: left;
+    width: 55px;
+    height: 140px;
+    background: url("../images/index_z_8ea32f7.png");
+    /*
+        向左移动 1067px
+        向上移动 532px
+    */
+    background-position: -1067px -532px;
+}
+
+.fun-box {
+    float: right;
+    width: 1060px;
+    height: 516px;
+}
+
+.fun_con {
+    position: relative;
+    width: 1060px;
+    height: 536px;
+    overflow: hidden;
+}
+
+.fun-container {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 2300px;
+    height: 516px;
+}
+
+.fun-container > div {
+    width: 220px;
+    height: 516px;
+    float: left;
+    margin-right: 10px;
+    /*
+        这是一个过渡效果，用于使所有的属性更改（如尺寸、颜色、位置等）在0.4秒内平滑过渡。
+        这能为元素交互（如悬停或点击）提供视觉上的反馈。
+    */
+    transition: all .4s;
+}
+
+.fun-container > div:hover {
+    /* 水平向上 20 px */
+    transform: translateY(-20px);
+}
+/* 泛娱乐结束 */
+
+/*最外层容器结束*/
